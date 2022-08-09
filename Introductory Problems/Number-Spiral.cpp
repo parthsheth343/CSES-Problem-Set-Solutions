@@ -15,10 +15,10 @@ int main() {
         if (y == x) {cout << (ll) x*x - (ll) x + 1<<endl;}
         else if (y > x) {
             if (y%2 == 0) {cout << (ll) y*y + 1 - x<<endl;}
-            else {cout << (ll) y*y - (ll) 2*y + 1 + x<<endl;}
+            else {cout << (ll) (y-1)*(y-1) + x<<endl;}
         }
         else {
-            if (x%2 == 0) {cout << (ll) x*x - (ll) 2*x + 1 + y<<endl;}
+            if (x%2 == 0) {cout << (ll) (x-1)*(x-1) + y<<endl;}
             else {cout << (ll) x*x + 1 - y<<endl;}
         }
     }
