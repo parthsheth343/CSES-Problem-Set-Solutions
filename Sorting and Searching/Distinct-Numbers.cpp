@@ -10,13 +10,13 @@ int main() {
     cin.tie(0);
 
     int n, x;
-    vector<int> data;
-    cin >> n;;
+    unordered_set<int> data;
+    cin >> n;
+
     for (int i = 0; i < n; i++) {
         cin >> x;
-        data.push_back(x);
+        data.insert(x);
     }
-    sort(data.begin(), data.end());
-    data.erase(unique(data.begin(), data.end()), data.end());
-    cout << data.size() << endl;
+    cout << data.size();
 }
+

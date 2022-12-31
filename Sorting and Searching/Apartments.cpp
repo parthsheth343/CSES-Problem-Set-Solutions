@@ -6,33 +6,40 @@ using namespace std;
 #define endl "\n"
 
 int main() {
-    ios::sync_with_stdio(0);
+    ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    int n, m, k; //n = # of applicants, m = # of apartments, k = max allowed difference
-    vector<int> das; //das = desired apartment sizes
-    vector<int> soa; //soa = size of apartments;
-    int a, b;
-    int ans = 0;
+    int n, m, k, ans=0;
     cin >> n >> m >> k;
-    for (int i = 0; i < n; i++) {
-        cin >> a;
-        das.push_back(a);
+
+    const int N = n;
+    int desired[N];
+
+    for (int i = 0; i < N; i++) {
+        cin >> desired[i];
     }
-    for (int i = 0; i < m; i++) {
-        cin >> b;
-        soa.push_back(b);
+
+    const int M = m;
+    int apartments[M];
+
+    for (int i = 0; i < M; i++) {
+        cin >> apartments[i];
     }
-    sort(das.begin(), das.end());
-    sort(soa.begin(), soa.end());
-    while (das.size()>0 && soa.size()>0) {
-        if (soa[soa.size()-1] >= das[das.size()-1] - k && soa[soa.size()-1] <= das[das.size()-1] + k) {
+    
+    sort(desired, desired + N);
+    sort(apartments, apartments + M);
+
+    int i = 0, j = 0;
+    while (i < N && j < M) {
+        if (abs(desired[i] - apartments[j]) <= k) {
+            i++;
+            j++;
             ans++;
-            soa.pop_back();
-            das.pop_back();
+        } else if (desired[i] - apartments[j] > k) {
+            j++;
         } else {
-            soa[soa.size()-1] > das[das.size()-1] ? soa.pop_back() : das.pop_back();
+            i++;
         }
     }
-    cout << ans << endl;
+    cout << ans;
 }
